@@ -38,3 +38,34 @@ bool read_data(const std::string& input_file)
     }
     return true;
 }
+
+int binarySearch( const int anArray[], int first, int last, int target )
+{
+    int index { 0 };
+    if ( first > last )
+    {
+        // target is not in the array
+        index = -1;
+    }
+    else
+    {
+        // if target is in anArray, anArray[first] <= target <= anArray[last]
+        int mid{ first + (last - first) / 2 }; // why not (first + last) / 2
+        if ( target == anArray[ mid ])
+        {
+            // target found at anArray[mid]
+            index = mid;
+        }
+        else if ( target < anArray[mid] )
+        {
+            // target is possibly somewhere in lower half of anArray
+            index = binarySearch( anArray, first, mid - 1, target );
+        }
+        else
+        {
+            // target is possibly somewhere in upper half of anArray
+            index = binarySearch( anArray, mid + 1, last, target );
+        }
+    } // end else
+    return index;
+} // end binarySearch

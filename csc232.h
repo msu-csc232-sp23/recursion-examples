@@ -60,4 +60,6 @@ int factorial(int number);
  */
 bool read_data(const std::string& file_name);
 
+int binarySearch( const int anArray[], int first, int last, int target );
+
 #endif
